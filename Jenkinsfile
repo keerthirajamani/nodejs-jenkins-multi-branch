@@ -33,7 +33,8 @@ pipeline {
     }
     stage('cleanup'){
       steps{
-         sh 'sudo docker rmi -f $(docker images -aq) y'
+         //sh 'sudo docker rmi -f $(docker images -aq)'
+         echo "Clean Up Running."
       }
     }
     stage('DEV-QA stage'){
