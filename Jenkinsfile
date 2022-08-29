@@ -19,8 +19,7 @@ pipeline {
         //sh 'git remote -v'
         //sh "git remote add origin https://github.com/keerthirajamani/nodejs-jenkins-multi-branch.git && git push -u origin master && git remote -v && git push origin --tags"
         }
-      }
-    }
+      }    
     stage ('Deploy'){
       steps{
         script {
@@ -41,5 +40,5 @@ pipeline {
         build job: 'Check-trigger', parameters: [string(name: 'VALUE_BUILD', value:"$BUILD_NUMBER")], propagate: false
       }
     }
-
+  }
 }
