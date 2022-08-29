@@ -1,0 +1,53 @@
+pipeline{
+    agent any
+    parameters {
+        string(name: 'VALUE_BUILD', defaultValue: '123', description: 'BUild Number')
+    }
+    environment {
+        nodeimagename = "kerajamani/multi-node-repo:"
+        registryCredential = 'e6f03bbc-a426-42d7-b8d9-eced80a1e6d7'
+        dockerImage = ''
+    } 
+    stages{
+        stage('dev stage'){
+            agent {
+                node { 
+                    label  'dev-jenkins' 
+                }
+            }
+            steps{
+                sh 'docker rmi -f $(docker images -aq)'
+                script {
+                dockerImage = docker.image("${nodeimagename}${VALUE_BUILD}")
+                docker.withRegistry('', registryCredential) {
+                    dockerImage.pull()
+                }
+                sh "imagename=${nodeimagename}${VALUE_BUILD}  docker-compose up -d"
+            }
+            }
+
+
+        }
+        stage("QA stage"){
+            agent {
+                node { 
+                    label  'QA-jenkins' 
+                }
+            }
+            input {
+                message "Should we continue?"
+                ok "Yes"
+            }
+            steps{
+                sh 'docker rmi -f $(docker images -aq)'
+                script {
+                dockerImage = docker.image("${nodeimagename}${VALUE_BUILD}")
+                docker.withRegistry('', registryCredential) {
+                    dockerImage.pull()
+                }
+                sh "imagename=${nodeimagename}${VALUE_BUILD}  docker-compose up -d"
+            }
+        }
+    }
+}
+}
