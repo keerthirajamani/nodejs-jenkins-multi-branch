@@ -37,9 +37,9 @@ pipeline {
          echo "Clean Up Running."
       }
     }
-    stage('DEV-QA stage'){
+    stage('DEV-QA-stage'){
       steps{
-        build job: 'Check-trigger', parameters: [string(name: 'VALUE_BUILD', value:"$BUILD_NUMBER")], propagate: false
+        build job: 'groovy_assignment_02', parameters: [string(name: 'VALUE_BUILD', value:"$BUILD_NUMBER")], propagate: false
       }
     }
   }
