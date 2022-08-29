@@ -4,7 +4,7 @@ pipeline{
         string(name: 'VALUE_BUILD', defaultValue: '123', description: 'BUild Number')
     }
     environment {
-        nodeimagename = "kerajamani/multi-node-repo:"
+        nodeimagename = "keerthirajamani/multi-node-repo:"
         registryCredential = 'keerthi_docker'
         dockerImage = ''
     } 

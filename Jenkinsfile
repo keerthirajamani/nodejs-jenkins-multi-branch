@@ -7,7 +7,7 @@ pipeline {
   }
   environment {
      PATH = "/usr/local/bin:${env.PATH}"
-     nodeimagename = "kerajamani/multi-node-repo:"
+     nodeimagename = "keerthirajamani/multi-node-repo:"
      registryCredential = 'keerthi_docker'
       dockerImage = ''
   }
