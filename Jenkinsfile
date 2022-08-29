@@ -14,10 +14,10 @@ pipeline {
   stages {
     stage('Build'){
       steps{
-        withCredentials([usernamePassword( credentialsId: 'keerthi_github',usernameVariable: 'MYUSER', passwordVariable: 'MYPWD' )]) {
-        sh " git tag -a build-$BUILD_NUMBER -m 'jenkins-tag' "
-        sh 'git remote -v'
-        sh "git remote add origin https://github.com/keerthirajamani/nodejs-jenkins-multi-branch.git && git push -u origin master && git remote -v && git push origin --tags"
+        //withCredentials([usernamePassword( credentialsId: 'keerthi_github',usernameVariable: 'MYUSER', passwordVariable: 'MYPWD' )]) {
+        //sh " git tag -a build-$BUILD_NUMBER -m 'jenkins-tag' "
+        //sh 'git remote -v'
+        //sh "git remote add origin https://github.com/keerthirajamani/nodejs-jenkins-multi-branch.git && git push -u origin master && git remote -v && git push origin --tags"
         }
       }
     }
