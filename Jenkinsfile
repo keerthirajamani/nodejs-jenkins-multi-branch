@@ -18,6 +18,11 @@ pipeline {
         //sh " git tag -a build-$BUILD_NUMBER -m 'jenkins-tag' "
         //sh 'git remote -v'
         //sh "git remote add origin https://github.com/keerthirajamani/nodejs-jenkins-multi-branch.git && git push -u origin master && git remote -v && git push origin --tags"
+        sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
+        sh 'sudo sh get-docker.sh'
+        sh 'sudo apt-get install docker-compose -y'
+        sh 'sudo sh build.sh'
+        sh 'sudo sh rm.sh'
         echo "I am groooot."
         }
       }    
